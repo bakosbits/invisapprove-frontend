@@ -12,8 +12,8 @@ export type ApprovalCategory = (typeof CATEGORY_SLUGS)[number];
 
 export const CATEGORY_LABELS: Record<ApprovalCategory, string> = {
   time_attendance: "Time & Attendance",
-  finance_expense: "Finance — Expense",
-  finance_procurement: "Finance — Procurement",
+  finance_expense: "Finance - Expense",
+  finance_procurement: "Finance - Procurement",
   operations_access: "Operations & Access",
   human_resources: "Human Resources",
   legal_compliance: "Legal & Compliance",
@@ -24,6 +24,13 @@ export const CATEGORY_LABELS: Record<ApprovalCategory, string> = {
 export const AMOUNT_REQUIRED_CATEGORIES = new Set<ApprovalCategory>([
   "finance_expense",
   "finance_procurement",
+]);
+
+// Categories where the amount field is shown at all (required or optional)
+export const AMOUNT_APPLICABLE_CATEGORIES = new Set<ApprovalCategory>([
+  "finance_expense",
+  "finance_procurement",
+  "general",
 ]);
 
 // ---------------------------------------------------------------------------

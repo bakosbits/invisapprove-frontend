@@ -1,4 +1,5 @@
 import { Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import type { Rule } from "../../api/types";
 import { Badge } from "../../components/ui/badge";
 import { EmptyState } from "../../components/ui/empty-state";
@@ -25,6 +26,7 @@ interface RulesTableProps {
 }
 
 export function RulesTable({ rules, loading }: RulesTableProps) {
+  const navigate = useNavigate();
   if (loading) {
     return (
       <div className="space-y-2">
@@ -59,7 +61,7 @@ export function RulesTable({ rules, loading }: RulesTableProps) {
       </TableHeader>
       <TableBody>
         {rules.map((rule) => (
-          <TableRow key={rule.id}>
+          <TableRow key={rule.id} onClick={() => navigate(`/rules/${rule.id}`)}>
             <TableCell>
               <div className="flex items-center gap-2">
                 <p className="font-medium text-slate-200">{rule.name}</p>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
+  AMOUNT_APPLICABLE_CATEGORIES,
   AMOUNT_REQUIRED_CATEGORIES,
   CATEGORY_LABELS,
   CATEGORY_METADATA_FIELDS,
@@ -28,7 +29,7 @@ const schema = z
     title: z.string().min(1, "Title is required"),
     description: z.string().optional(),
     category: z.enum(CATEGORY_SLUGS, { required_error: "Category is required" }),
-    amount: z.coerce.number().positive("Must be positive").optional(),
+    amount: z.coerce.number().nonnegative("Must be 0 or greater").optional(),
     metadata: z.record(z.unknown()).optional(),
   })
   .superRefine((data, ctx) => {
@@ -59,6 +60,7 @@ export function CreateApprovalDialog() {
 
   const category = watch("category") as ApprovalCategory | undefined;
   const metadataFields = category ? CATEGORY_METADATA_FIELDS[category] : [];
+  const amountApplicable = category ? AMOUNT_APPLICABLE_CATEGORIES.has(category) : false;
   const amountRequired = category ? AMOUNT_REQUIRED_CATEGORIES.has(category) : false;
 
   const onSubmit = async (data: FormData) => {
@@ -123,7 +125,7 @@ export function CreateApprovalDialog() {
                 )}
               </div>
 
-              {category && (
+              {amountApplicable && (
                 <Input
                   label={amountRequired ? "Amount (USD) *" : "Amount (USD)"}
                   type="number"

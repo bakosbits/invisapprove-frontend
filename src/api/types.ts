@@ -63,6 +63,8 @@ export type CreateRulePayload = {
   priority?: number;
 };
 
+export type UpdateRulePayload = Partial<CreateRulePayload>;
+
 export type DeliveryLog = {
   id: string;
   approval_id: string | null;

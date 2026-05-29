@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { PageShell } from "../../../components/layout/page-shell";
-import { useApproval } from "../../../hooks/use-approvals";
+import { useApproval, useApprovalStream } from "../../../hooks/use-approvals";
 import { ActionBar } from "./action-bar";
 import { ApprovalHeader } from "./approval-header";
 import { ApprovalMetadata } from "./approval-metadata";
@@ -9,6 +9,7 @@ import { ApprovalTimeline } from "./approval-timeline";
 export function ApprovalDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { data: approval, isLoading } = useApproval(id ?? "");
+  useApprovalStream(id ?? "");
 
   return (
     <PageShell title="Approval detail">

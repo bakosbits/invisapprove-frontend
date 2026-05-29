@@ -55,7 +55,7 @@ export function ConditionBuilder({ control }: ConditionBuilderProps) {
         variant="outline"
         size="sm"
         className="w-full gap-1.5 text-xs"
-        onClick={() => append({ field: "amount", operator: "<", value: "" })}
+        onClick={() => append({ field: "amount", operator: "=", value: "" })}
       >
         <Plus className="h-3 w-3" />
         Add condition

@@ -8,6 +8,7 @@ import { ApprovalDetailPage } from "./pages/approvals/detail";
 import { RulesPage } from "./pages/rules";
 import { RuleDetailPage } from "./pages/rules/detail";
 import { NotificationsPage } from "./pages/notifications";
+import { SettingsPage } from "./pages/settings";
 
 export function AppRouter() {
   return (
@@ -23,6 +24,7 @@ export function AppRouter() {
         <Route path="/rules" element={<RulesPage />} />
         <Route path="/rules/:id" element={<RuleDetailPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

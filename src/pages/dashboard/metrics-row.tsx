@@ -1,4 +1,5 @@
 import type { Approval, ApprovalStatus } from "../../api/types";
+import { AnimatedNumber } from "../../components/ui/animated-number";
 import { Card, CardContent } from "../../components/ui/card";
 import { Skeleton } from "../../components/ui/skeleton";
 import { colors } from "../../design/tokens";
@@ -50,8 +51,8 @@ export function MetricsRow({ approvals, loading }: MetricsRowProps) {
             style={{ background: `linear-gradient(90deg, ${color}00, ${color}, ${color}00)` }}
           />
           <CardContent className="pt-5">
-            <p className="font-mono tabular text-2xl font-semibold text-slate-100" style={{ color }}>
-              {count}
+            <p className="font-mono tabular text-2xl font-semibold" style={{ color }}>
+              <AnimatedNumber value={count} />
             </p>
             <p className="mt-1 text-xs text-slate-500">{label}</p>
           </CardContent>

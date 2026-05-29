@@ -1,0 +1,26 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./components/auth/protected-route";
+import { DashboardPage } from "./pages/dashboard";
+import { LoginPage } from "./pages/login";
+import { ApprovalsPage } from "./pages/approvals";
+import { ApprovalDetailPage } from "./pages/approvals/detail";
+import { RulesPage } from "./pages/rules";
+
+export function AppRouter() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/login" element={<LoginPage />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/approvals" element={<ApprovalsPage />} />
+        <Route path="/approvals/:id" element={<ApprovalDetailPage />} />
+        <Route path="/rules" element={<RulesPage />} />
+        {/* Phase 6: /notifications, /integrations, /settings */}
+      </Route>
+
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
+}

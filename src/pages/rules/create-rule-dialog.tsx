@@ -27,7 +27,7 @@ const schema = z.object({
   ).min(1, "At least one condition is required"),
   actionType: z.enum(["auto_approve", "escalate", "require_approval"]),
   shadow: z.boolean(),
-  priority: z.coerce.number().int().default(0),
+  priority: z.coerce.number().int(),
 });
 
 export type CreateRuleFormData = z.infer<typeof schema>;

@@ -8,6 +8,7 @@ import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { Badge } from "../../../components/ui/badge";
 import { Skeleton } from "../../../components/ui/skeleton";
+import { PageShell } from "../../../components/layout/page-shell";
 import { useRule, useUpdateRule } from "../../../hooks/use-rules";
 import { useUIStore } from "../../../stores/ui.store";
 import { ConditionBuilder } from "../condition-builder";
@@ -77,6 +78,7 @@ export function RuleDetailPage() {
   };
 
   return (
+    <PageShell title="Rule detail">
     <div className="max-w-2xl">
       <Link
         to="/rules"
@@ -167,5 +169,6 @@ export function RuleDetailPage() {
         <p className="text-sm text-slate-500">Rule not found.</p>
       )}
     </div>
+    </PageShell>
   );
 }

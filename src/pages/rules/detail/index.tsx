@@ -79,7 +79,7 @@ export function RuleDetailPage() {
 
   return (
     <PageShell title="Rule detail">
-    <div className="max-w-2xl">
+    <div className="mx-auto max-w-2xl">
       <Link
         to="/rules"
         className="mb-6 inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors"

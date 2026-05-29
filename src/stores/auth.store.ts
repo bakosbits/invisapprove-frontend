@@ -29,7 +29,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true });
     await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: window.location.origin },
+      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
     });
     set({ loading: false });
   },
@@ -37,8 +37,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   signInWithSlack: async () => {
     set({ loading: true });
     await supabase.auth.signInWithOAuth({
-      provider: "slack",
-      options: { redirectTo: window.location.origin },
+      provider: "slack_oidc",
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
   },
 

@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Approval } from "../../../api/types";
-import { StatusBadge } from "../../../components/ui/badge";
+import { StatusTransition } from "../../../components/ui/status-transition";
 import { Skeleton } from "../../../components/ui/skeleton";
 
 interface ApprovalHeaderProps {
@@ -43,7 +43,7 @@ export function ApprovalHeader({ approval, loading }: ApprovalHeaderProps) {
               )}
             </div>
           </div>
-          <StatusBadge status={approval.status} />
+          <StatusTransition status={approval.status} />
         </div>
       ) : null}
     </div>

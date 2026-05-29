@@ -41,9 +41,14 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        "page-enter": {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         shimmer: "shimmer 1.5s infinite",
+        "page-enter": "page-enter 0.2s ease-out both",
       },
     },
   },

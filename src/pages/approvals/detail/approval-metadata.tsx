@@ -29,6 +29,9 @@ export function ApprovalMetadata({ approval, loading }: ApprovalMetadataProps) {
         ) : approval ? (
           <dl className="space-y-3">
             <MetaRow label="Requester" value={approval.requester.name || approval.requester.id} mono />
+            {approval.approver_id && (
+              <MetaRow label="Approver" value={approval.approver_id} mono />
+            )}
             <MetaRow
               label="Created"
               value={format(new Date(approval.created_at), "MMM d, yyyy HH:mm")}

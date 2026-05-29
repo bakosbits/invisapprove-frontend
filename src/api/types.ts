@@ -17,6 +17,7 @@ export type Approval = {
   description: string | null;
   status: ApprovalStatus;
   requester: { id: string; name: string };
+  approver_id: string | null;
   actions: ApprovalAction[];
   metadata: Record<string, unknown>;
   amount?: number | null;
@@ -28,6 +29,7 @@ export type CreateApprovalPayload = {
   title: string;
   description?: string;
   requester_id: string;
+  approver_id?: string | null;
   metadata?: Record<string, unknown>;
   amount?: number;
   category: ApprovalCategory;

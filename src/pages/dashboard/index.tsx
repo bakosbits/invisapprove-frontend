@@ -6,6 +6,7 @@ import { CategoryBreakdown } from "./category-breakdown";
 import { MetricsRow } from "./metrics-row";
 import { RecentActivity } from "./recent-activity";
 import { RuleHitRateChart } from "./rule-hit-rate-chart";
+import { SlaComplianceChart } from "./sla-compliance-chart";
 
 export function DashboardPage() {
   const { data: approvals, isLoading } = useApprovals();
@@ -19,9 +20,10 @@ export function DashboardPage() {
           <ApprovalChart approvals={approvals} loading={isLoading} />
           <RecentActivity approvals={approvals} loading={isLoading} />
         </div>
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <CategoryBreakdown approvals={approvals} loading={isLoading} />
           <RuleHitRateChart rules={rules} loading={rulesLoading} />
+          <SlaComplianceChart approvals={approvals} loading={isLoading} />
         </div>
       </div>
     </PageShell>

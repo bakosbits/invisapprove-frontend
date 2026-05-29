@@ -28,6 +28,7 @@ const schema = z
   .object({
     title: z.string().min(1, "Title is required"),
     description: z.string().optional(),
+    approver_id: z.string().optional(),
     category: z.enum(CATEGORY_SLUGS, { required_error: "Category is required" }),
     amount: z.coerce.number().nonnegative("Must be 0 or greater").optional(),
     metadata: z.record(z.unknown()).optional(),
@@ -69,6 +70,7 @@ export function CreateApprovalDialog() {
       title: data.title,
       description: data.description,
       requester_id: user.id,
+      approver_id: data.approver_id || null,
       amount: data.amount,
       category: data.category,
       metadata: data.metadata,
@@ -104,6 +106,16 @@ export function CreateApprovalDialog() {
                 placeholder="Optional details…"
                 {...register("description")}
               />
+              <div className="flex flex-col gap-1.5">
+                <Input
+                  label="Approver Slack Member ID"
+                  placeholder="e.g. U0123ABCDEF"
+                  {...register("approver_id")}
+                />
+                <p className="text-xs text-slate-600">
+                  In Slack: click a profile → ⋯ → Copy member ID. Leave blank to allow any channel member to approve.
+                </p>
+              </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-medium text-slate-400">

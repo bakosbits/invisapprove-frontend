@@ -137,7 +137,7 @@ export function RuleDetailPage() {
               <div className="border-t border-invisapprove-border pt-5 space-y-2">
                 <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Conditions</p>
                 <p className="text-xs text-slate-600">All conditions must match (AND).</p>
-                <ConditionBuilder control={control} />
+                <ConditionBuilder control={control as never} />
                 {errors.conditions?.message && (
                   <p className="text-xs text-rose-400">{errors.conditions.message}</p>
                 )}

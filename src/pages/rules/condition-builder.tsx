@@ -1,13 +1,14 @@
 import { Plus, Trash2 } from "lucide-react";
-import { useFieldArray, type Control } from "react-hook-form";
-import type { CreateRuleFormData } from "./create-rule-dialog";
+import { useFieldArray, type Control, type FieldValues } from "react-hook-form";
 import { Button } from "../../components/ui/button";
 import { CONDITION_FIELDS } from "../../lib/categories";
 
 const OPERATORS = ["<", "<=", ">", ">=", "=", "!=", "in", "not_in", "exists"] as const;
 
 interface ConditionBuilderProps {
-  control: Control<CreateRuleFormData>;
+  // Widened to base type — component only accesses `conditions`, broader form shape irrelevant
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: Control<FieldValues, any, any>;
 }
 
 export function ConditionBuilder({ control }: ConditionBuilderProps) {

@@ -134,7 +134,7 @@ export function CreateRuleDialog() {
                   <p className="text-xs text-slate-500 mb-3">
                     All conditions must match (AND). Evaluated in priority order.
                   </p>
-                  <ConditionBuilder control={control} />
+                  <ConditionBuilder control={control as never} />
                   {errors.conditions?.message && (
                     <p className="mt-1 text-xs text-rose-400">{errors.conditions.message}</p>
                   )}

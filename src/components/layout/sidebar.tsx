@@ -31,8 +31,9 @@ export function Sidebar() {
             <div className="flex h-14 items-center gap-2 px-4">
                 <div className="flex h-7 items-center justify-center">
                     <img src={logo} alt="Invisapprove Logo" className="h-7 w-10" />
-                    <span className="font-semibold text-slate-100 tracking-tight">Invisapprove</span>
                 </div>
+                <span className="font-semibold text-slate-100 tracking-tight">Invisapprove</span>
+
             </div>
 
             {/* Navigation */}

@@ -10,7 +10,8 @@ import { Avatar } from "../ui/avatar";
 import { Separator } from "../ui/separator";
 import { NavItem } from "./nav-item";
 import { useAuth } from "../../hooks/use-auth";
-import Logo from "../ui/logo";
+import logo from "../../assets/invisapprove-logo-light.png";
+
 
 const NAV_ITEMS = [
     { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -27,29 +28,37 @@ export function Sidebar() {
     return (
         <aside className="flex h-full w-56 flex-col border-r border-invisapprove-border bg-invisapprove-surface">
             {/* Logo */}
-            <div className="flex h-14 items-center gap-2 px-4">
-                <Logo className="h-7 w-10 object-contain" />
-                <span className="font-semibold text-slate-100 tracking-tight leading-none">Invisapprove</span>
-            </div>
+            <div className="h-14 items-center gap-2 px-4">
+                    <div className="inline-block h-7 w-10 align-middle">
+                        <img
+                            src={logo}
+                            alt="Invisapprove Logo"
+                            className="h-full w-full object-contain"
+                        />
+                    </div>
+                    <span className="inline-block align-middle font-semibold text-slate-100 tracking-tight">
+                        Invisapprove
+                    </span>
+                </div>
 
-            {/* Navigation */}
-            <nav className="flex-1 space-y-0.5 overflow-y-auto p-3">
-                {NAV_ITEMS.map((item) => (
-                    <NavItem key={item.to} {...item} />
-                ))}
-            </nav>
+                {/* Navigation */}
+                <nav className="flex-1 space-y-0.5 overflow-y-auto p-3">
+                    {NAV_ITEMS.map((item) => (
+                        <NavItem key={item.to} {...item} />
+                    ))}
+                </nav>
 
-            {/* User footer */}
-            <div className="border-t border-invisapprove-border p-3">
-                <Separator className="mb-3" />
-                <div className="flex items-center gap-2.5 rounded-card px-2 py-2">
-                    <Avatar src={user?.avatar_url} name={user?.name || user?.email} size="sm" />
-                    <div className="flex-1 min-w-0">
-                        <p className="truncate text-xs font-medium text-slate-200">{user?.name || "User"}</p>
-                        <p className="truncate text-[11px] text-slate-500">{user?.email}</p>
+                {/* User footer */}
+                <div className="border-t border-invisapprove-border p-3">
+                    <Separator className="mb-3" />
+                    <div className="flex items-center gap-2.5 rounded-card px-2 py-2">
+                        <Avatar src={user?.avatar_url} name={user?.name || user?.email} size="sm" />
+                        <div className="flex-1 min-w-0">
+                            <p className="truncate text-xs font-medium text-slate-200">{user?.name || "User"}</p>
+                            <p className="truncate text-[11px] text-slate-500">{user?.email}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
         </aside>
     );
 }

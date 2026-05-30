@@ -105,7 +105,7 @@ export function CreateApprovalDialog() {
             <div className="space-y-4 px-6 py-4">
               <Input
                 label="Title"
-                placeholder="Purchase order — AWS credits"
+                placeholder="Purchase order: AWS credits"
                 error={errors.title?.message}
                 {...register("title")}
               />

@@ -32,7 +32,7 @@ export function Sidebar() {
         <div className="flex h-8 w-12 items-center justify-center">
           <img src={logo} alt="Invisapprove Logo" className="h-8 w-12" />
         </div>
-        <span className="text-sm font-semibold text-slate-100 tracking-tight">invisapprove</span>
+        <span className="font-semibold text-slate-100 tracking-tight">Invisapprove</span>
       </div>
 
       {/* Navigation */}

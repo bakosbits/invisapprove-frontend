@@ -1,66 +1,74 @@
 const Logo = ({ 
-  size = 120, 
-  primaryColor = '#3b52ff', // Blue outline
-  accentColor = '#1effc6',  // Teal checkmark fill
-  insideFill = '#f1f5f9',   // Background fill (set to '#ffffff' for white)
-  className = '', 
+  size = 200, 
+  primaryColor = '#3b52ff', 
+  accentColor = '#1effc6', 
+  fillColor = '#f1f5f9', // Use '#ffffff' for white or '#f1f5f9' for slate-100
+  className = '',
   ...props 
 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 620 380"
+      viewBox="0 0 540 320"
       width={size}
-      height={size * (380 / 620)}
+      height={size * (320 / 540)}
       className={className}
       {...props}
     >
-      {/* ================= BACKGROUND FILLS ================= */}
-      <g fill={insideFill}>
-        {/* 'i' dot fill */}
-        <circle cx="55" cy="55" r="30" />
+      {/* 1. SOLID BACKGROUND COLOR LAYER (Fills the inside of the outlines) */}
+      <g fill={fillColor}>
+        {/* 'i' Dot Fill */}
+        <circle cx="50" cy="50" r="30" />
         
-        {/* 'i' stem fill */}
-        <path d="M28 115 h54 v230 h-54 z" />
+        {/* 'i' Body Fill */}
+        <path d="M20 100 h60 v200 h-60 z" />
         
-        {/* 'a' and 'v' main body fill */}
-        <path d="M310 120 
-                 C200 120, 110 200, 110 290 
-                 C110 370, 210 370, 310 320 
-                 C335 305, 360 250, 385 190 
-                 C410 250, 440 360, 490 360 
-                 C540 360, 560 240, 500 115
-                 C470 180, 440 260, 415 260
-                 C390 260, 365 180, 340 140
-                 C330 125, 320 120, 310 120 Z" />
+        {/* Main 'a-v' Combined Shape Inner Fill */}
+        <path d="M 175 100 
+                 C 100 100, 100 300, 175 300 
+                 C 230 300, 270 230, 270 170 
+                 C 270 230, 310 300, 365 300 
+                 C 410 300, 460 160, 410 100 
+                 C 375 150, 350 220, 330 220 
+                 C 310 220, 290 150, 250 100 
+                 C 220 150, 200 220, 175 220 
+                 C 145 220, 145 160, 175 160 
+                 C 200 160, 215 190, 225 190 
+                 C 240 190, 255 140, 270 100 Z" />
       </g>
 
+      {/* 2. TEAL ACCENT WING LAYER */}
       <path
-        d="M515 150 
-           C535 90, 560 30, 600 30 
-           L610 30 
-           C610 70, 570 110, 535 160 
-           Z"
+        d="M 430 130 
+           C 445 90, 475 30, 520 30 
+           C 510 70, 475 120, 445 170 Z"
         fill={accentColor}
         stroke={primaryColor}
-        strokeWidth="12"
+        strokeWidth="14"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
 
-      <g fill="none" stroke={primaryColor} strokeWidth="12" strokeLinecap="round" strokeLinejoin="round">
-        {/* 'i' dot outline */}
-        <circle cx="55" cy="55" r="30" />
+      {/* 3. PRIMARY OUTLINE LAYER */}
+      <g fill="none" stroke={primaryColor} strokeWidth="14" strokeLinecap="round" strokeLinejoin="round">
+        {/* 'i' Dot Outline */}
+        <circle cx="50" cy="50" r="30" />
         
-        {/* 'i' stem outline */}
-        <path d="M28 115 h54 v230 h-54 z" />
+        {/* 'i' Body Outline */}
+        <path d="M 20 100 h 60 v 200 h -60 z" />
         
-        {/* 'a' and 'v' main outline wireframe */}
-        <path d="M310 120 
-                 C200 120, 110 200, 110 290 
-                 C110 370, 210 370, 310 320 
-                 C335 305, 360 250, 385 190 
-                 C410 250, 440 360, 490 360 
-                 C540 360, 560 240, 500 115" />
+        {/* The continuous 'a' and 'v' fluid loop line */}
+        <path d="M 270 100 
+                 C 255 140, 240 190, 225 190 
+                 C 215 190, 200 160, 175 160 
+                 C 145 160, 145 220, 175 220 
+                 C 200 220, 220 150, 250 100 
+                 C 290 150, 310 220, 330 220 
+                 C 350 220, 375 150, 410 100 
+                 C 460 160, 410 300, 365 300 
+                 C 310 300, 270 230, 270 170 
+                 C 270 230, 230 300, 175 300 
+                 C 100 300, 100 100, 175 100 Z" />
       </g>
     </svg>
   );

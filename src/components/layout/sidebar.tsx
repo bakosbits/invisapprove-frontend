@@ -10,8 +10,7 @@ import { Avatar } from "../ui/avatar";
 import { Separator } from "../ui/separator";
 import { NavItem } from "./nav-item";
 import { useAuth } from "../../hooks/use-auth";
-import logo from "../../assets/invisapprove-logo-light.png";
-
+import Logo from "../ui/logo";
 
 const NAV_ITEMS = [
     { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -29,7 +28,7 @@ export function Sidebar() {
         <aside className="flex h-full w-56 flex-col border-r border-invisapprove-border bg-invisapprove-surface">
             {/* Logo */}
             <div className="flex h-14 items-center gap-2 px-4">
-                <img src={logo} alt="Invisapprove Logo" className="h-7 w-10 object-contain" />
+                <Logo className="h-7 w-10 object-contain" />
                 <span className="font-semibold text-slate-100 tracking-tight leading-none">Invisapprove</span>
             </div>
 

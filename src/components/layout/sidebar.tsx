@@ -28,9 +28,9 @@ export function Sidebar() {
   return (
     <aside className="flex h-full w-56 flex-col border-r border-invisapprove-border bg-invisapprove-surface">
       {/* Logo */}
-      <div className="flex h-14 items-center gap-2.5 px-4">
-        <div className="flex h-12 w-16 items-center justify-center">
-          <img src={logo} alt="Invisapprove Logo" className="h-12" />
+      <div className="flex h-14 items-center gap-2 px-4">
+        <div className="flex h-10 items-center justify-center">
+          <img src={logo} alt="Invisapprove Logo" className="h-10" />
         </div>
         <span className="text-sm font-semibold text-slate-100 tracking-tight">invisapprove</span>
       </div>

@@ -108,7 +108,7 @@ function SlackMockup() {
                         IA
                     </div>
                     <div className="flex items-center gap-2">
-                        <span className="text-[13px] font-bold text-white">InvisApprove</span>
+                        <span className="text-[13px] font-bold text-white">Invisapprove</span>
                         <span className="rounded bg-[#1E2A3F] px-1.5 py-0.5 text-[10px] font-semibold text-slate-400">
                             APP
                         </span>
@@ -484,7 +484,7 @@ export function LandingPage() {
                         </span>
                     </div>
                     <p className="text-[12px] text-slate-600">
-                        © {new Date().getFullYear()} InvisApprove. Friction-free approvals.
+                        © {new Date().getFullYear()} Invisapprove. Friction-free approvals.
                     </p>
                 </div>
             </footer>

@@ -84,4 +84,15 @@ export type User = {
   avatar_url: string | null;
 };
 
+export type AuditLog = {
+  id: string;
+  actor_id: string | null;
+  event: string;
+  resource_type: string | null;
+  resource_id: string | null;
+  payload: Record<string, unknown> | null;
+  ip_address: string | null;
+  created_at: string;
+};
+
 export type ApiError = { error: string; details?: string };

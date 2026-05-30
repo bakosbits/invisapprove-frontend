@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/auth/protected-route";
 import { AuthCallbackPage } from "./pages/auth-callback";
 import { DashboardPage } from "./pages/dashboard";
+import { LandingPage } from "./pages/landing";
 import { LoginPage } from "./pages/login";
 import { ApprovalsPage } from "./pages/approvals";
 import { ApprovalDetailPage } from "./pages/approvals/detail";
@@ -14,7 +15,7 @@ import { SettingsPage } from "./pages/settings";
 export function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/auth/callback" element={<AuthCallbackPage />} />
       <Route path="/login" element={<LoginPage />} />
 

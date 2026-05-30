@@ -327,7 +327,7 @@ export function LandingPage() {
             <nav className="sticky top-0 z-50 border-b border-[#1E2A3F]/60 bg-[#0B0F1A]/90 backdrop-blur-sm">
                 <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 
-                    <div className="flex h-12 items-center gap-2">
+                    <div className="flex h-10 items-center gap-2">
                         <div className="flex h-7 items-center justify-center">
                             <img src={Logo} alt="Invisapprove Logo" className="h-7 w-10" />
                         </div>

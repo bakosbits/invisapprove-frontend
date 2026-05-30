@@ -28,18 +28,12 @@ export function Sidebar() {
     return (
         <aside className="flex h-full w-56 flex-col border-r border-invisapprove-border bg-invisapprove-surface">
             {/* Logo */}
-            <div className="h-14 items-center gap-2 px-4">
-                    <div className="inline-block h-7 w-10 align-middle">
-                        <img
-                            src={logo}
-                            alt="Invisapprove Logo"
-                            className="h-full w-full object-contain"
-                        />
-                    </div>
-                    <span className="inline-block align-middle font-semibold text-slate-100 tracking-tight">
-                        Invisapprove
-                    </span>
+            <div className="flex h-14 items-center gap-2 px-4">
+                <div className="flex h-7 items-center justify-center">
+                    <img src={logo} alt="Invisapprove Logo" className="h-7 w-10" />
                 </div>
+                <span className="font-semibold text-slate-100 tracking-tight">Invisapprove</span>
+            </div>
 
                 {/* Navigation */}
                 <nav className="flex-1 space-y-0.5 overflow-y-auto p-3">

@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { create } from "zustand";
-import { setTokenGetter } from "../api/client";
+import { setTokenGetter, apiRequest } from "../api/client";
 import type { User } from "../api/types";
 
 const supabase = createClient(
@@ -53,19 +53,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     } = await supabase.auth.getSession();
 
     if (session) {
-      const user: User = {
-        id: session.user.id,
-        email: session.user.email ?? "",
-        name: (session.user.user_metadata?.["name"] as string | undefined) ?? "",
-        avatar_url: (session.user.user_metadata?.["avatar_url"] as string | undefined) ?? null,
-      };
-      set({ user, token: session.access_token, initialized: true });
-    } else {
-      set({ initialized: true });
-    }
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) {
+      set({ token: session.access_token });
+      try {
+        const user = await apiRequest<User>("/auth/me");
+        set({ user, initialized: true });
+      } catch {
+        // Fall back to session metadata if the backend is unreachable
         set({
           user: {
             id: session.user.id,
@@ -73,7 +66,25 @@ export const useAuthStore = create<AuthState>((set) => ({
             name: (session.user.user_metadata?.["name"] as string | undefined) ?? "",
             avatar_url: (session.user.user_metadata?.["avatar_url"] as string | undefined) ?? null,
           },
-          token: session.access_token,
+          initialized: true,
+        });
+      }
+    } else {
+      set({ initialized: true });
+    }
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        set({ token: session.access_token });
+        apiRequest<User>("/auth/me").then((user) => set({ user })).catch(() => {
+          set({
+            user: {
+              id: session.user.id,
+              email: session.user.email ?? "",
+              name: (session.user.user_metadata?.["name"] as string | undefined) ?? "",
+              avatar_url: (session.user.user_metadata?.["avatar_url"] as string | undefined) ?? null,
+            },
+          });
         });
       } else {
         set({ user: null, token: null });

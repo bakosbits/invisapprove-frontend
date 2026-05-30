@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import {
   AMOUNT_APPLICABLE_CATEGORIES,
@@ -21,8 +21,10 @@ import {
 } from "../../components/ui/dialog";
 import { Input, Textarea } from "../../components/ui/input";
 import { useMutateApproval } from "../../hooks/use-approvals";
+import { useUsers } from "../../hooks/use-users";
 import { useAuth } from "../../hooks/use-auth";
 import { useUIStore } from "../../stores/ui.store";
+import { UserCombobox } from "../../components/ui/user-combobox";
 
 const schema = z
   .object({
@@ -49,6 +51,7 @@ export function CreateApprovalDialog() {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
   const { create } = useMutateApproval();
+  const { data: users, isLoading: usersLoading } = useUsers();
   const addToast = useUIStore((s) => s.addToast);
 
   const {
@@ -56,6 +59,7 @@ export function CreateApprovalDialog() {
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
@@ -66,18 +70,22 @@ export function CreateApprovalDialog() {
 
   const onSubmit = async (data: FormData) => {
     if (!user) return;
-    await create.mutateAsync({
-      title: data.title,
-      description: data.description,
-      requester_id: user.id,
-      approver_id: data.approver_id || null,
-      amount: data.amount,
-      category: data.category,
-      metadata: data.metadata,
-    });
-    addToast("Approval created", "success");
-    reset();
-    setOpen(false);
+    try {
+      await create.mutateAsync({
+        title: data.title,
+        description: data.description,
+        requester_id: user.id,
+        approver_id: data.approver_id || null,
+        amount: data.amount,
+        category: data.category,
+        metadata: data.metadata,
+      });
+      addToast("Approval created", "success");
+      reset();
+      setOpen(false);
+    } catch {
+      addToast("Failed to create approval — please try again", "error");
+    }
   };
 
   return (
@@ -107,13 +115,21 @@ export function CreateApprovalDialog() {
                 {...register("description")}
               />
               <div className="flex flex-col gap-1.5">
-                <Input
-                  label="Approver Slack Member ID"
-                  placeholder="e.g. U0123ABCDEF"
-                  {...register("approver_id")}
+                <label className="text-xs font-medium text-slate-400">Approver</label>
+                <Controller
+                  name="approver_id"
+                  control={control}
+                  render={({ field }) => (
+                    <UserCombobox
+                      users={users}
+                      loading={usersLoading}
+                      value={field.value ?? null}
+                      onChange={(id) => field.onChange(id ?? undefined)}
+                    />
+                  )}
                 />
                 <p className="text-xs text-slate-600">
-                  In Slack: click a profile → ⋯ → Copy member ID. Leave blank to allow any channel member to approve.
+                  Leave blank to allow any channel member to approve.
                 </p>
               </div>
 
